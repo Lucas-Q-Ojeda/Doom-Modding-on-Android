@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <h1>DOOM Modding on Android</h1>
+
+    <p>¿Have you ever wondered if you could make a DOOM Mod on Android?</p>
+    <p>It is almost imposible, but i've found a way to do it!</p>
+	<hr>
+	<h2>Requiered tools</h2>
+	<ul>
+	  <li><b>A file manager:</b> We'll use this to create the files and assets. I recommend using ZArchiver, but you can use other app.</li>
+	  <br>
+	  <li><b>A DOOM Port:</b> For example, <i>Delta Touch.</i></li>
+	  <li><b>[OPTIONAL] Drawing App:</b>We'll use this to create sprites & graphics.</li>
+	</ul>
+	<hr>
+	<h2>The proyect</h2>
+	<h3>1. Our workspace</h3>
+	<p>Now that we know the tools we need to use, let's get straight to the point.</p>
+	<p>We're going to create a folder, with our mod name. For example, i'll create a folder called <code>"My Mod".</code></p>
+	<img src="scrshot1.png" height="650px">
+	<p>This folder will be the folder where we will place all our files (including sprites, sounds, etc.).</p>
+	<hr>
+	<h3>Your first mod</h3>
+	<p>We'll now proceed to make our first mod using <I>DECORATE</I>.</p>
+	<p>In our folder, create a file called <code>DECORATE.txt</code>. This is the file where we can put all our customizations and can be referenced later in the game. Inside the file, add the next text, i will documentate everything of the code:</p>
+	
+	<code>
+	  ACTOR MyShotgun : Shotgun replaces Shotgun
+	  <br>
+	  {
+	  <br>
+	     States
+		 <br>
+		 {
+		 <br>
+		 Fire:
+		 <br>
+	        SHTG A 1 A_FireShotgun
+			<br>
+	        SHTG A 1 A_ReFire
+			<br>
+	        Goto Ready
+			<br>
+	  }
+	</code>
+	<h4>What this does:</h4>
+	<p><b>ACTOR MyShotgun</b>: This registers a new <code>Actor</code> on the game.</p>
+	<p><b>Shotgun replaces Shotgun</b>: This makes the actor inherit from the Shotgun actor (Doom Shotgun), and then replaces it with our custom shotgun.</p>
+	<p><b>States { Fire: ... }</b>: This defines the weapon states. We are only changing the Fire state (The state activates when the player presses the fire button on game).</p>
+	<p><b>SHTG A 1 A_FireShotgun & A_ReFire</b>: SHTG A is the sprite used for that tick. 1 is the amount of time in ticks that the sprite stays. A_FireShotgun is a doom action for the player that shoots shotgun shells. A_ReFire checks if the player is still pressing the Fire button. If A_ReFiee is present, it will persistenly shoot until you release the fire button. if it's not present, you'll have to manualy press the fire button over and over again.</p>
+    <hr>
+	<h2>Building the mod</h2>
+	<p>Here's a thing you might didn't know. Doom PK3s are actually ZIPs. For example, GZDoom doesnt care about the format, it will always read it like a ZIP file.</p>
+	
+	<H3>PLEASE DON'T FORGET THIS!!</H3>
+	
+	<p>The files inside the mod should be in the root of the zip file, not in a subfolder.</p>
+	
+	<img src="cbuild.png" height="650px">
+	<p>This is the correct way to compress all files.</p>
+	
+	<br>
+	  
+	<img src="icbuild.png" height="650px">
+	<p>This is not a correct way of compressing all files.</p>
+	
+	<p>Now rename it to "MyMod.pk3" and test it.</p>
+	
+	<p>Inside the game, open the console and type <code>summon MyShotgun</code></p>
+	<p>You should see the shotgun spawning. Now, grab the shotgun and start shooting. You might see that its incredibly fast.</p>
+	
+	<img src="congrats.png" width="650px">
+	
+	<p>Congrats! You built your first mod!</p>
+  </body>
+</html>
